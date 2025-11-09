@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Research Assistant - Cutting-edge feature offering advanced reports, market analysis, and custom data integration powered by Claude AI.">
+    <meta name="keywords" content="AI Research, Assistant, Claude, Reports, Market Analysis, Custom Data">
+    <meta name="author" content="Upflex Digital">
+    <title>AI Research Assistant - Powered by Claude</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Icons Rounded -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gradient-btn {
+            background: linear-gradient(135deg, #5B4BFF 0%, #00E5A8 100%);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .gradient-btn:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(91, 75, 255, 0.3);
+        }
+        
+        .gradient-btn:active {
+            transform: scale(0.98);
+        }
+        
+        body {
+            background-color: #FFFFFF;
+            color: #1F2937;
+        }
+        
+        .section-heading {
+            color: #5B4BFF;
+        }
+        
+        .accent-mint {
+            color: #00E5A8;
+        }
+        
+        .bg-soft-lavender {
+            background-color: #EEF0FF;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .card-hover:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(91, 75, 255, 0.2);
+        }
+        
+        .faq-answer {
+            transition: all 0.3s ease-in-out;
+            max-height: 500px;
+            overflow: hidden;
+        }
+        
+        .faq-answer.hidden {
+            max-height: 0;
+            opacity: 0;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.hidden {
+            display: none;
+        }
+        
+        header {
+            background-color: #FFFFFF;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <nav class="max-w-7xl mx-auto px-6 md:px-8 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-r from-[#5B4BFF] to-[#00E5A8] rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-rounded text-white text-2xl">psychology</span>
+                </div>
+                <span class="text-2xl font-bold" style="color: #5B4BFF;">AIResearch</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#features" class="text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 font-medium">Features</a>
+                <a href="#benefits" class="text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 font-medium">Benefits</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 font-medium">Testimonials</a>
+                <a href="#faq" class="text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 font-medium">FAQ</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button class="mobile-menu-button text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Desktop CTA Button -->
+            <div class="hidden md:block">
+                <a href="https://www.upflexdigital.com/contact" class="gradient-btn px-8 py-3 rounded-lg text-white font-bold text-sm">
+                    Get Started
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden bg-white border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4">
+                <a href="#features" class="text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 font-medium py-2">Features</a>
+                <a href="#benefits" class="text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 font-medium py-2">Benefits</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 font-medium py-2">Testimonials</a>
+                <a href="#faq" class="text-gray-700 hover:text-[#5B4BFF] transition-colors duration-300 font-medium py-2">FAQ</a>
+                <a href="https://www.upflexdigital.com/contact" class="gradient-btn px-8 py-3 rounded-lg text-white font-bold text-center mt-2">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-white via-[#EEF0FF] to-white py-32 md:py-40 px-6 md:px-8 overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#5B4BFF] opacity-5 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#00E5A8] opacity-5 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="flex flex-col gap-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 bg-[#00E5A8] rounded-full"></div>
+                        <span class="text-sm font-bold tracking-widest text-[#00E5A8] uppercase">Powered by Claude AI</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-6xl lg:text-6xl font-bold tracking-tight leading-tight" style="color: #5B4BFF;">
+                        AI Research Assistant
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-2xl">
+                        Experience cutting-edge artificial intelligence designed to revolutionize your research workflow. Our advanced AI research assistant offers unprecedented capabilities without the complexity of traditional development.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="https://www.upflexdigital.com/contact" class="gradient-btn px-8 py-4 rounded-lg text-white font-bold text-lg text-center hover:scale-105 transition-transform duration-300">
+                            Start Your Journey
+                        </a>
+                        <button class="px-8 py-4 rounded-lg border-2 border-[#5B4BFF] text-[#5B4BFF] font-bold text-lg hover:bg-[#EEF0FF] transition-all duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                    
+                    <div class="flex gap-8 pt-8 flex-wrap">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-rounded text-[#00E5A8] text-2xl">check_circle</span>
+                            <span class="text-sm font-medium text-gray-700">Instant Results</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-rounded text-[#00E5A8] text-2xl">shield</span>
+                            <span class="text-sm font-medium text-gray-700">Enterprise Security</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-rounded text-[#00E5A8] text-2xl">bolt</span>
+                            <span class="text-sm font-medium text-gray-700">Lightning Fast</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center justify-center">
+                    <div class="relative w-full h-96">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#5B4BFF] to-[#00E5A8] rounded-2xl opacity-20 blur-2xl"></div>
+                        <div class="absolute inset-0 bg-white rounded-2xl shadow-2xl flex items-center justify-center border border-[#EEF0FF]">
+                            <div class="text-center flex flex-col items-center gap-4">
+                                <span class="material-symbols-rounded text-6xl" style="color: #5B4BFF;">smart_toy</span>
+                                <p class="text-xl font-bold" style="color: #5B4BFF;">AI-Powered Intelligence</p>
+                                <p class="text-sm text-gray-600 font-light">Advanced research capabilities at your fingertips</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 md:py-32 px-6 md:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6" style="color: #5B4BFF;">
+                    Powerful Features Built for You
+                </h2>
+                <p class="text-lg text-gray-600 font-light max-w-3xl mx-auto">
+                    Discover the comprehensive suite of tools designed to transform your research capabilities and accelerate your insights.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1: Reports -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-[#EEF0FF] shadow-lg hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <span class="material-symbols-rounded text-white text-3xl">description</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: #5B4BFF;">Comprehensive Reports</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Generate detailed, professional reports instantly. Our AI analyzes complex data patterns and presents them in clear, actionable formats that stakeholders can immediately understand and act upon.
+                    </p>
+                    <div class="flex items-center gap-2 text-[#00E5A8] font-bold hover:gap-3 transition-all duration-300 cursor-pointer">
+                        <span>Learn More</span>
+                        <span class="material-symbols-rounded text-xl">arrow_forward</span>
+                    </div>
+                </div>
+                
+                <!-- Feature 2: Market Analysis -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-[#EEF0FF] shadow-lg hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <span class="material-symbols-rounded text-white text-3xl">trending_up</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: #5B4BFF;">Market Intelligence</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Access deep insights into specific markets or custom data segments. Analyze trends, identify opportunities, and stay ahead of the competition with real-time market intelligence powered by advanced AI algorithms.
+                    </p>
+                    <div class="flex items-center gap-2 text-[#00E5A8] font-bold hover:gap-3 transition-all duration-300 cursor-pointer">
+                        <span>Learn More</span>
+                        <span class="material-symbols-rounded text-xl">arrow_forward</span>
+                    </div>
+                </div>
+                
+                <!-- Feature 3: Integration -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-[#EEF0FF] shadow-lg hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <span class="material-symbols-rounded text-white text-3xl">integration_instructions</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: #5B4BFF;">Seamless Integration</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Plug into any workflow, system, or platform with ease. Our flexible API and integration tools allow you to embed AI research capabilities anywhere in your existing tech stack without disruption.
+                    </p>
+                    <div class="flex items-center gap-2 text-[#00E5A8] font-bold hover:gap-3 transition-all duration-300 cursor-pointer">
+                        <span>Learn More</span>
+                        <span class="material-symbols-rounded text-xl">arrow_forward</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-24 md:py-32 px-6 md:px-8 bg-soft-lavender">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6" style="color: #5B4BFF;">
+                    Why Choose Our AI Research Assistant
+                </h2>
+                <p class="text-lg text-gray-600 font-light max-w-3xl mx-auto">
+                    Transform your research process and unlock new levels of insight and efficiency.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+                <!-- Benefit 1 -->
+                <div class="flex gap-6 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="material-symbols-rounded text-white text-2xl">auto_awesome</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: #5B4BFF;">Intelligent Inference</h3>
+                        <p class="text-gray-600 font-light leading-relaxed">
+                            Our advanced AI doesn't just process data—it understands context and makes intelligent inferences. Draw meaningful conclusions from complex datasets with AI that thinks like a researcher, identifying patterns and correlations you might miss.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="flex gap-6 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="material-symbols-rounded text-white text-2xl">speed</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: #5B4BFF;">Lightning-Fast Processing</h3>
+                        <p class="text-gray-600 font-light leading-relaxed">
+                            Get results in seconds, not hours. Our optimized infrastructure processes massive datasets with incredible speed, allowing you to iterate quickly and make faster decisions based on fresh insights.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="flex gap-6 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="material-symbols-rounded text-white text-2xl">security</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: #5B4BFF;">Enterprise-Grade Security</h3>
+                        <p class="text-gray-600 font-light leading-relaxed">
+                            Your data is protected with military-grade encryption and compliance with all major standards. We take security seriously so you can focus on your research with complete peace of mind.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="flex gap-6 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="material-symbols-rounded text-white text-2xl">tune</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: #5B4BFF;">Fully Customizable</h3>
+                        <p class="text-gray-600 font-light leading-relaxed">
+                            Tailor the AI to your specific needs. Configure parameters, adjust algorithms, and customize outputs to match your exact research requirements and organizational standards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 md:py-32 px-6 md:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://images.unsplash.com/photo-1677442d019cecf8f1b46072b53591ba18c3f61f7?w=1200&h=600&fit=crop'); opacity: 0.15;"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#5B4BFF] to-[#00E5A8] opacity-90 z-0"></div>
+        
+        <div class="max-w-5xl mx-auto relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-white">
+                Ready to Transform Your Research?
+            </h2>
+            <p class="text-lg md:text-xl text-white font-light mb-10 max-w-3xl mx-auto">
+                Join forward-thinking organizations leveraging AI to accelerate their research and gain competitive advantage. Start your free trial today and experience the future of intelligent research.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://www.upflexdigital.com/contact" class="px-10 py-4 rounded-lg bg-white text-[#5B4BFF] font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-lg">
+                    Get Started Now
+                </a>
+                <button class="px-10 py-4 rounded-lg border-2 border-white text-white font-bold text-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300">
+                    Schedule Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 md:py-32 px-6 md:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6" style="color: #5B4BFF;">
+                    Loved by Research Leaders
+                </h2>
+                <p class="text-lg text-gray-600 font-light max-w-3xl mx-auto">
+                    See what industry experts and research professionals say about our AI research assistant.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-[#EEF0FF] shadow-lg hover:shadow-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-6">
+                        "This AI research assistant has completely revolutionized how our team conducts market analysis. What used to take weeks now takes hours. The reports are incredibly detailed and the insights are spot-on. We've already seen a 40% improvement in our research turnaround time."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-full flex items-center justify-center text-white font-bold">
+                            SR
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Sarah Richardson</p>
+                            <p class="text-sm text-gray-600 font-light">Head of Research, TechVentures Inc</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-[#EEF0FF] shadow-lg hover:shadow-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-6">
+                        "The seamless integration with our existing systems was a game-changer. We were able to plug this in within days, not months. The intelligent inference capabilities have helped us uncover market opportunities we never would have spotted manually. Highly recommended for any serious research organization."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-full flex items-center justify-center text-white font-bold">
+                            MJ
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Michael Johnson</p>
+                            <p class="text-sm text-gray-600 font-light">VP of Analytics, DataInsights Co</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-[#EEF0FF] shadow-lg hover:shadow-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-6">
+                        "Enterprise security was our top concern, and this solution exceeded all our expectations. The encryption standards and compliance certifications give us complete confidence. Plus, the customer support team is incredibly responsive and knowledgeable. Best investment we've made for our research department."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-full flex items-center justify-center text-white font-bold">
+                            EL
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Emily Liu</p>
+                            <p class="text-sm text-gray-600 font-light">Chief Information Officer, GlobalTech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-[#EEF0FF] shadow-lg hover:shadow-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                        <span class="material-symbols-rounded text-[#00E5A8] text-2xl">star</span>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-6">
+                        "The customization options are fantastic. We were able to tailor the AI to our specific research methodologies without any technical headaches. The speed of processing is incredible—our team can now run multiple analyses simultaneously and get results in real-time. This has transformed our competitive advantage."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-[#5B4BFF] to-[#00E5A8] rounded-full flex items-center justify-center text-white font-bold">
+                            DP
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">David Park</p>
+                            <p class="text-sm text-gray-600 font-light">Director of Strategic Research, Innovation Labs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="py-24 md:py-32 px-6 md:px-8 bg-soft-lavender">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-12" style="color: #5B4BFF;">
+                About Our Mission
+            </h2>
+            
+            <div class="space-y-8">
+                <p class="text-lg text-gray-700 font-light leading-relaxed">
+                    Founded in 2022, Upflex Digital emerged from a simple yet powerful vision: to democratize advanced AI research capabilities for organizations of all sizes. Our founding team recognized that cutting-edge AI technology was locked behind expensive, complex implementations that only large enterprises could access. We set out to change that by building an intuitive, powerful AI research assistant that anyone could use. Today, we're proud to serve hundreds of organizations worldwide, from innovative startups to Fortune 500 companies, all leveraging our platform to make faster, smarter research decisions.
+                </p>
+                
+                <p class="text-lg text-gray-700 font-light leading-relaxed">
+                    Our core mission is rooted in three fundamental values: innovation, accessibility, and integrity. We believe that intelligent research should be accessible to everyone, not just those with massive budgets. We're committed to continuous innovation, regularly updating our platform with the latest AI breakthroughs and research methodologies. And we maintain unwavering integrity in how we handle data, security, and our relationships with our customers. Every feature we build, every decision we make, and every interaction we have is guided by these principles. We're not just building a tool—we're building the future of research itself.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 md:py-32 px-6 md:px-8 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6" style="color: #5B4BFF;">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-lg text-gray-600 font-light">
+                    Find answers to common questions about our AI research assistant.
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white border border-[#EEF0FF] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <button class="faq-question w-full px-8 py-6 flex items-center justify-between cursor-pointer hover:bg-[#EEF0FF] transition-colors duration-300">
+                        <h3 class="text-lg font-bold text-left" style="color: #5B4BFF;">How does the AI research assistant work?</h3>
+                        <span class="faq-icon material-symbols-rounded text-[#5B4BFF] text-2xl transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer hidden px-8 pb-6 bg-[#EEF0FF] bg-opacity-30">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            Our AI research assistant leverages advanced machine learning models, specifically Claude AI by Anthropic, to process and analyze complex datasets. It works by ingesting your data, identifying patterns and correlations, applying sophisticated inference algorithms, and then presenting findings in comprehensive, actionable reports. The system learns from your specific research methodologies and continuously improves its accuracy over time. You simply input your research parameters, and our AI handles the heavy lifting—data processing, analysis, insight generation, and report creation—all within seconds.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white border border-[#EEF0FF] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <button class="faq-question w-full px-8 py-6 flex items-center justify-between cursor-pointer hover:bg-[#EEF0FF] transition-colors duration-300">
+                        <h3 class="text-lg font-bold text-left" style="color: #5B4BFF;">Is my data secure and private?</h3>
+                        <span class="faq-icon material-symbols-rounded text-[#5B4BFF] text-2xl transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer hidden px-8 pb-6 bg-[#EEF0FF] bg-opacity-30">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            Absolutely. Security is our highest priority. We employ military-grade AES-256 encryption for all data in transit and at rest. Our infrastructure is built on secure, compliant cloud platforms with multi-layer security protocols. We maintain SOC 2 Type II, GDPR, and HIPAA compliance certifications. Your data is never shared with third parties, and you maintain complete ownership and control. We also offer on-premise deployment options for enterprise clients with additional security requirements. Regular security audits and penetration testing ensure our systems remain impenetrable.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white border border-[#EEF0FF] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <button class="faq-question w-full px-8 py-6 flex items-center justify-between cursor-pointer hover:bg-[#EEF0FF] transition-colors duration-300">
+                        <h3 class="text-lg font-bold text-left" style="color: #5B4BFF;">How quickly can I integrate this into my existing workflow?</h3>
+                        <span class="faq-icon material-symbols-rounded text-[#5B4BFF] text-2xl transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer hidden px-8 pb-6 bg-[#EEF0FF] bg-opacity-30">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            Integration is remarkably fast. Most organizations get up and running within 24-48 hours. We provide comprehensive APIs, webhooks, and pre-built connectors for popular platforms like Salesforce, Tableau, Power BI, and more. Our integration team provides white-glove onboarding support to ensure a smooth transition. If you prefer, you can start with our web interface immediately—no integration needed. For custom implementations, our team works closely with your IT department to ensure seamless integration with your specific tech stack and workflows.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white border border-[#EEF0FF] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <button class="faq-question w-full px-8 py-6 flex items-center justify-between cursor-pointer hover:bg-[#EEF0FF] transition-colors duration-300">
+                        <h3 class="text-lg font-bold text-left" style="color: #5B4BFF;">Can I customize the AI to match my specific research methodology?</h3>
+                        <span class="faq-icon material-symbols-rounded text-[#5B4BFF] text-2xl transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer hidden px-8 pb-6 bg-[#EEF0FF] bg-opacity-30">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            Yes, absolutely. Customization is one of our core strengths. You can configure analysis parameters, adjust algorithm weights, define custom data fields, and tailor output formats to match your exact research requirements. Our advanced customization panel allows you to fine-tune everything from inference models to report templates. For more complex customizations, our professional services team can work with you to build custom workflows, integrate proprietary algorithms, or develop bespoke features. This flexibility ensures the AI works exactly the way your organization needs it to.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-white border border-[#EEF0FF] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <button class="faq-question w-full px-8 py-6 flex items-center justify-between cursor-pointer hover:bg-[#EEF0FF] transition-colors duration-300">
+                        <h3 class="text-lg font-bold text-left" style="color: #5B4BFF;">What kind of support and training do you provide?</h3>
+                        <span class="faq-icon material-symbols-rounded text-[#5B4BFF] text-2xl transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="faq-answer hidden px-8 pb-6 bg-[#EEF0FF] bg-opacity-30">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            We provide comprehensive support across all plans. Every customer gets access to our knowledge base, video tutorials, and webinar training. Premium plans include dedicated account managers, priority support with guaranteed response times, and custom training sessions. We also offer certification programs for power users and administrators. Our support team is available 24/7 for critical issues, and we maintain an active community forum where users share best practices and tips. Additionally, we host monthly webinars on advanced features and industry best practices to help you maximize your investment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 px-6 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-[#5B4BFF] to-[#00E5A8] rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-rounded text-white text-2xl">psychology</span>
+                        </div>
+                        <span class="text-2xl font-bold">AIResearch</span>
+                    </div>
+                    <p class="text-gray-400 font-light leading-relaxed">
+                        Transforming research with cutting-edge AI technology powered by Claude.
+                    </p>
+                    <div class="flex gap-4 pt-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#5B4BFF] transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#5B4BFF] transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#5B4BFF] transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#5B4BFF] transition-colors duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Product -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Product</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#features" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Features</a></li>
+                        <li><a href="#benefits" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Benefits</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Security</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">About Us</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Cookie Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="border-t border-gray-800 pt-8 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-rounded text-[#00E5A8]">mail</span>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm font-light">Email</p>
+                            <p class="text-white font-bold"><a href="mailto:info@upflexdigital.com" class="hover:text-[#00E5A8] transition-colors duration-300">info@upflexdigital.com</a></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-rounded text-[#00E5A8]">location_on</span>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm font-light">Location</p>
+                            <p class="text-white font-bold">San Francisco, CA</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-rounded text-[#00E5A8]">support_agent</span>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm font-light">Support</p>
+                            <p class="text-white font-bold">24/7 Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-400 font-light text-center md:text-left">
+                    &copy; 2025 Upflex Digital. All rights reserved. Powered by Claude AI.
+                </p>
+                <div class="flex gap-6">
+                    <a href="privacy.html" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light text-sm">Privacy</a>
+                    <a href="terms.html" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light text-sm">Terms</a>
+                    <a href="blog.html" class="text-gray-400 hover:text-[#00E5A8] transition-colors duration-300 font-light text-sm">Blog</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.querySelector('header nav .mobile-menu-button');
+            const mobileMenu = document.querySelector('header nav .mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
+                    }
+                });
+
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+
+            // FAQ Accordion Toggle
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', () => {
+                        const answer = item.querySelector('.faq-answer');
+                        const isOpen = !answer.classList.contains('hidden');
+                        
+                        // Close all other FAQ items
+                        faqItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.querySelector('.faq-answer')?.classList.add('hidden');
+                                otherItem.querySelector('.faq-icon')?.classList.remove('rotate-180');
+                            }
+                        });
+                        
+                        // Toggle current item
+                        answer?.classList.toggle('hidden');
+                        item.querySelector('.faq-icon')?.classList.toggle('rotate-180');
+                    });
+                }
+            });
+
+            // Smooth Scroll for Anchor Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
